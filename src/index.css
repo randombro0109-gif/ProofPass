@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 244 247 252;
+  --surface: 255 255 255;
+  --surface-muted: 236 242 250;
+  --ink: 20 33 61;
+  --ink-muted: 91 107 130;
+  --line: 227 234 244;
+  --royal: 16 35 74;
+  --royal-fg: 255 255 255;
+  --action: 36 85 214;
+  --action-fg: 255 255 255;
+  --active: 52 120 246;
+  --accent: 25 184 213;
+  --mint: 220 244 233;
+  --mint-fg: 14 110 72;
+  --gold: 252 241 212;
+  --gold-fg: 122 80 0;
+  --red: 252 231 231;
+  --red-fg: 168 36 36;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --canvas: 9 22 44;
+  --surface: 17 35 66;
+  --surface-muted: 24 47 84;
+  --ink: 232 241 255;
+  --ink-muted: 168 191 222;
+  --line: 42 72 118;
+  --royal: 30 78 168;
+  --royal-fg: 255 255 255;
+  --action: 63 123 230;
+  --action-fg: 255 255 255;
+  --active: 104 164 244;
+  --accent: 41 198 234;
+  --mint: 18 61 51;
+  --mint-fg: 127 227 188;
+  --gold: 58 47 18;
+  --gold-fg: 242 205 107;
+  --red: 74 26 31;
+  --red-fg: 255 156 156;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-active ring-offset-2 ring-offset-canvas;
+  }
+
+  ::selection {
+    background: rgb(var(--active) / 0.25);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+}
+
+[dir='rtl'] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+:root[data-text-size='large'] {
+  font-size: 112.5%;
+}
+
+:root[data-text-size='xlarge'] {
+  font-size: 125%;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #receipt-print,
+  #receipt-print * {
+    visibility: visible;
+  }
+
+  #receipt-print {
+    position: static !important;
+    box-shadow: none;
+    border: none;
+  }
+
+  .fixed {
+    position: static !important;
+  }
+
+  [role='dialog'] {
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
